@@ -1,0 +1,2 @@
+{% extends 'base.html' %}
+{% block content %}<h1>Настройки</h1><p>Demo mode: true</p><h3>Зоны доставки</h3><ul>{% for z in zones %}<li>{{ z.name }} - {{ z.price }} ₽</li>{% endfor %}</ul><h3>Слоты</h3><ul>{% for s in slots %}<li>{{ s.slot_label }} (лимит {{ s.max_orders }})</li>{% endfor %}</ul>{% endblock %}
