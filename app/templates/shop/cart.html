@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Корзина</h1>
+{% if totals['items'] %}
+<table class="table align-middle">
+  <tr><th>Товар</th><th>Кол-во</th><th>Сумма</th></tr>
+  {% for i in totals['items'] %}
+  <tr>
+    <td>{{ i.product.name }}</td>
+    <td>
+      <form method="post" action="/cart/update" class="d-flex gap-2">
+        <input type="hidden" name="product_id" value="{{ i.product.id }}">
+        <input type="number" name="qty" value="{{ i.qty }}" min="0" class="form-control" style="width:100px">
+        <button class="btn btn-sm btn-outline-secondary">OK</button>
+      </form>
+    </td>
+    <td>{{ i.line_total }} ₽</td>
+  </tr>
+  {% endfor %}
+</table>
+<form method="post" action="/cart/apply-promo" class="mb-3 d-flex gap-2">
+  <input class="form-control" name="code" placeholder="Промокод">
+  <button class="btn btn-outline-success">Применить</button>
+</form>
+<div>Подытог: {{ totals.subtotal }} ₽</div>
+<div>Скидка: {{ totals.discount }} ₽</div>
+<div class="fs-5">Итого: {{ totals.total }} ₽</div>
+<a class="btn btn-success mt-3" href="/checkout">Оформить заказ</a>
+{% else %}
+<div class="alert alert-light border">В корзине пока пусто. Добавьте понравившийся букет из каталога.</div>
+<a class="btn btn-success" href="/catalog">Перейти в каталог</a>
+{% endif %}
+{% endblock %}
