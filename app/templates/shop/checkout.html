@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Оформление заказа</h1>
+{% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+<form method="post" class="row g-3">
+<div class="col-md-6"><input required name="name" class="form-control" placeholder="Имя"></div>
+<div class="col-md-6"><input required name="phone" class="form-control" placeholder="Телефон"></div>
+<div class="col-md-6"><input required name="email" type="email" class="form-control" placeholder="Email"></div>
+<div class="col-md-6"><input required name="address" class="form-control" placeholder="Адрес"></div>
+<div class="col-md-4"><input required name="delivery_date" type="date" class="form-control" min="{{ today }}"></div>
+<div class="col-md-4"><select name="delivery_zone_id" class="form-select">{% for z in zones %}<option value="{{ z.id }}">{{ z.name }} ({{ z.price }} ₽)</option>{% endfor %}</select></div>
+<div class="col-md-4"><select name="delivery_slot_id" class="form-select">{% for s in slots %}<option value="{{ s.id }}">{{ s.slot_label }}</option>{% endfor %}</select></div>
+<div class="col-md-6"><select name="payment_method" class="form-select"><option value="card">Карта онлайн</option><option value="sbp">СБП/QR</option><option value="cash">Наличными</option></select></div>
+<div class="col-md-6"><select name="pickup_method" class="form-select"><option value="delivery">Доставка</option><option value="pickup">Самовывоз</option></select></div>
+<div class="col-md-12"><textarea name="comment" class="form-control" placeholder="Комментарий"></textarea></div>
+<div class="col-md-12"><textarea name="card_text" class="form-control" placeholder="Текст открытки"></textarea></div>
+<div class="col-12"><button class="btn btn-success">Подтвердить заказ</button></div>
+</form>
+{% endblock %}
