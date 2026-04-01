@@ -1,0 +1,2 @@
+{% extends 'base.html' %}
+{% block content %}<h1>Товары</h1><table class="table"><tr><th>Название</th><th>Категория</th><th>Цена</th><th>Остаток</th><th>Статус</th><th></th></tr>{% for p in products %}<tr><td>{{ p.name }}</td><td>{{ p.category.name }}</td><td>{{ p.price }}</td><td>{{ p.stock_quantity }}</td><td>{{ 'Активен' if p.is_active else 'Скрыт' }}</td><td><form method="post" action="/admin/products/{{ p.id }}/toggle"><button class="btn btn-sm btn-outline-secondary">Toggle</button></form></td></tr>{% endfor %}</table>{% endblock %}
