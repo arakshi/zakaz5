@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Заказы</h1><a class="btn btn-sm btn-outline-success" href="/admin/export/orders.csv">Экспорт CSV</a>
+<table class="table table-striped"><tr><th>Номер</th><th>Статус</th><th>Доставка</th><th>Курьер</th><th></th></tr>{% for o in orders %}<tr><td>{{ o.order_number }}</td><td><span class="badge text-bg-primary">{{ o.status.value }}</span></td><td>{{ o.delivery_status.value }}</td><td>{{ o.courier_id or '-' }}</td><td><form method="post" action="/admin/orders/{{ o.id }}/assign" class="d-flex gap-2"><select class="form-select form-select-sm" name="courier_id">{% for c in couriers %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}</select><button class="btn btn-sm btn-outline-secondary">Назначить</button></form></td></tr>{% endfor %}</table>
+{% endblock %}
