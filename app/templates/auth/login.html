@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-md-5 mx-auto">
+  <h1>Вход в админку</h1>
+  {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+  <form method="post" class="mb-3">
+    <input class="form-control mb-2" name="username" placeholder="Логин" required>
+    <input type="password" class="form-control mb-2" name="password" placeholder="Пароль" required>
+    <button class="btn btn-success w-100">Войти</button>
+  </form>
+
+  <div class="alert alert-light border">
+    <div class="mb-2"><b>Быстрый вход:</b></div>
+    <div class="d-flex flex-wrap gap-2 mb-2">
+      <a class="btn btn-sm btn-outline-success" href="/auth/quick/admin">admin</a>
+      <a class="btn btn-sm btn-outline-success" href="/auth/quick/catalog">catalog</a>
+      <a class="btn btn-sm btn-outline-success" href="/auth/quick/florist">florist</a>
+      <a class="btn btn-sm btn-outline-success" href="/auth/quick/delivery">delivery</a>
+    </div>
+    <small class="text-muted">Пароли: admin123 / catalog123 / florist123 / delivery123</small>
+  </div>
+</div>
+{% endblock %}
