@@ -1,0 +1,9 @@
+body { background: #f8faf8; color: #263238; }
+.navbar-brand { letter-spacing: 0.5px; }
+.bloom-hero { background: linear-gradient(135deg,#fff,#f0fff5); border:1px solid #e6f3ea; }
+.hero-flower { background: linear-gradient(115deg, #7ac48d, #4faa74); }
+.hero-image { max-width: 100%; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,.2); }
+.card { border-radius: 14px; border: 1px solid #edf2ef; box-shadow: 0 2px 8px rgba(18, 66, 42, .04); }
+.product-card:hover { transform: translateY(-2px); transition: .2s ease; }
+.card-img-top { height: 200px; object-fit: cover; }
+.table { background: #fff; border-radius: 12px; overflow: hidden; }
