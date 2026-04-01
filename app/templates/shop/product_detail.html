@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6"><img class="img-fluid rounded" src="{{ product.image_url or 'https://picsum.photos/800/600?random=' ~ product.id }}"></div>
+  <div class="col-md-6"><h1>{{ product.name }}</h1><p>{{ product.description }}</p><p><b>{{ product.price }} ₽</b></p><form method="post" action="/cart/add"><input type="hidden" name="product_id" value="{{ product.id }}"><input class="form-control mb-2" type="number" value="1" min="1" name="qty"><button class="btn btn-success">Добавить в корзину</button></form></div>
+</div>
+<hr><h4>Рекомендованные товары</h4><div class="row g-3">{% for p in recommended %}<div class="col-md-3"><a href="/product/{{ p.slug }}">{{ p.name }}</a></div>{% endfor %}</div>
+{% endblock %}
