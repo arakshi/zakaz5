@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero-flower rounded-4 p-5 mb-4 text-white">
+  <div class="row align-items-center">
+    <div class="col-md-7">
+      <h1 class="display-5 fw-bold">Bloom — цветы с доставкой за 2 часа</h1>
+      <p class="lead">Собираем букеты из свежих поставок, добавляем открытки, подарки и отправляем в удобный интервал.</p>
+      <div class="d-flex gap-2">
+        <a class="btn btn-light btn-lg" href="/catalog">Смотреть каталог</a>
+        <a class="btn btn-outline-light btn-lg" href="/contacts">Связаться</a>
+      </div>
+    </div>
+    <div class="col-md-5 text-end d-none d-md-block">
+      <img class="hero-image" src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=700&q=80" alt="Цветы" />
+    </div>
+  </div>
+</section>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-4"><div class="card h-100"><div class="card-body"><h5>🚚 Быстрая доставка</h5><p class="text-muted">Центр, ближний и дальний район с выбором временного слота.</p></div></div></div>
+  <div class="col-md-4"><div class="card h-100"><div class="card-body"><h5>🌿 Свежие цветы</h5><p class="text-muted">Поставки каждый день, контроль остатков и составов букетов.</p></div></div></div>
+  <div class="col-md-4"><div class="card h-100"><div class="card-body"><h5>🎁 Подарки и открытки</h5><p class="text-muted">Добавьте игрушку, вазу или персональный текст открытки.</p></div></div></div>
+</div>
+
+<h3 class="mb-3">Акции недели</h3>
+<div class="row g-3 mb-5">
+  {% for p in promo %}
+  <div class="col-md-3">
+    <div class="card h-100 product-card">
+      <img src="{{ p.image_url or 'https://picsum.photos/400/300?random=' ~ (p.id+100) }}" class="card-img-top" alt="{{ p.name }}">
+      <div class="card-body">
+        <span class="badge text-bg-danger mb-2">SALE</span>
+        <h6><a href="/product/{{ p.slug }}" class="text-decoration-none">{{ p.name }}</a></h6>
+        <div><b>{{ p.price }} ₽</b>{% if p.old_price %} <span class="text-muted text-decoration-line-through">{{ p.old_price }} ₽</span>{% endif %}</div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<h3 class="mb-3">Популярные букеты</h3>
+<div class="row g-3">
+  {% for p in popular %}
+  <div class="col-md-3">
+    <div class="card h-100 product-card">
+      <img src="{{ p.image_url or 'https://picsum.photos/400/300?random=' ~ p.id }}" class="card-img-top" alt="{{ p.name }}">
+      <div class="card-body">
+        <h6><a href="/product/{{ p.slug }}" class="text-decoration-none">{{ p.name }}</a></h6>
+        <div class="mb-2">{{ p.price }} ₽</div>
+        <form method="post" action="/cart/add">
+          <input type="hidden" name="product_id" value="{{ p.id }}">
+          <button class="btn btn-outline-success btn-sm w-100">В корзину</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

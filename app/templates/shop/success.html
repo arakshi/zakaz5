@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="alert alert-success py-4">
+  <h2 class="mb-2">Спасибо за заказ! 🌸</h2>
+  <p>Ваш заказ успешно оформлен и передан в обработку.</p>
+  <p>Номер заказа: <b>{{ order_number }}</b></p>
+  <div class="d-flex gap-2">
+    <a class="btn btn-sm btn-success" href="/my-orders">Посмотреть мои заказы</a>
+    <a class="btn btn-sm btn-outline-success" href="/catalog">Продолжить покупки</a>
+  </div>
+</div>
+{% endblock %}
