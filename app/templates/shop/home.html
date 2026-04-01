@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-4 p-md-5 mb-4 bg-light rounded-4 bloom-hero">
+  <h1>Цветочный магазин Bloom</h1>
+  <p>Свежие цветы, стильные композиции и быстрая доставка по городу.</p>
+  <a class="btn btn-success" href="/catalog">Перейти в каталог</a>
+</div>
+<h3>Популярные товары</h3>
+<div class="row g-3 mb-4">{% for p in popular %}<div class="col-md-3"><div class="card h-100"><img src="{{ p.image_url or 'https://picsum.photos/400/300?random=' ~ p.id }}" class="card-img-top"><div class="card-body"><a href="/product/{{ p.slug }}">{{ p.name }}</a><div>{{ p.price }} ₽</div></div></div></div>{% endfor %}</div>
+<h3>Акции</h3>
+<div class="row g-3">{% for p in promo %}<div class="col-md-3"><div class="card h-100"><img src="{{ p.image_url or 'https://picsum.photos/400/300?random=' ~ (p.id+100) }}" class="card-img-top"><div class="card-body"><span class="badge text-bg-danger">SALE</span> <a href="/product/{{ p.slug }}">{{ p.name }}</a><div>{{ p.price }} ₽</div></div></div></div>{% endfor %}</div>
+{% endblock %}
